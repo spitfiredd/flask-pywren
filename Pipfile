@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+flake8 = "*"
+ipython = "*"
+
+[packages]
+flask = "*"
+pywren-ibm-cloud = {path = "./pywren_ibm_cloud-1.0.12-py3-none-any.whl"}
+flask-restplus = "*"
+flask-marshmallow = "*"
+environs = "*"
+jsonschema = {extras = ["date-time"],version = "*"}
+
+[requires]
+python_version = "3.7"

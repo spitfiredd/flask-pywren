@@ -35,3 +35,37 @@ data = r.json()
 print(data)
 >>> {'result': 38}
 ```
+
+
+## Install Redis docker image
+These are the instructions for installing a Redis docker container and running it.  This is espically nice on windows because you don't have to worry about all the dependencies.
+
+This guide assumes that you already have docker installed.
+
+Run the following,
+
+```
+docker pull redis
+docker run --name unique-name -d redis
+```
+
+This will expose port 6379 on your localhost.  You can now set your celery backend to `backend='redis://127.0.0.1'`.
+
+[Source](https://koukia.ca/installing-redis-on-windows-using-docker-containers-7737d2ebc25e)
+
+## Install rabbitmq docker image
+Install a rabbitmy docker image by
+
+`docker run -d --hostname flask-rabbit --name flask-rabbit -p 4369:4369 -p 5671:5671 -p 5672:5672 rabbitmq:3`
+
+Then in your celery config set you broker as `broker='amqp://localhost:5672'`
+
+[Source](https://docs.docker.com/samples/library/rabbitmq/)
+
+## Start Celery workers
+
+Run demo app:
+`celery -A scripts.celery_demo worker -l info -P gevent`
+
+To run the flask celery worker:
+`celery -A app.entry_celery worker -l info -P gevent`

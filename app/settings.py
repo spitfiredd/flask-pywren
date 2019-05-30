@@ -7,6 +7,10 @@ env.read_env()
 ENV = env.str('FLASK_ENV', default='production')
 DEBUG = ENV == 'development'
 
+# Celery settings
+CELERY_BROKER_URL = 'amqp://localhost:5672'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1'
+
 # Pywren Settings
 PYWREN_STORAGE_BUCKET = env.str('PYWREN_STORAGE_BUCKET')
 PYWREN_IBM_CF_ENDPOINT = env.str('PYWREN_IBM_CF_ENDPOINT')

@@ -11,20 +11,6 @@ def create_celery():
     return create_app_or_celery(mode='celery')
 
 
-# def create_app(config='app.settings'):
-#     app = Flask(__name__, instance_relative_config=True)
-
-#     app.config.from_object(config)
-#     load_blueprints(app)
-
-#     @app.route('/')
-#     def homepage():
-#         """Set /api/v1/ as home route"""
-#         return redirect(url_for('api.doc'))
-
-#     return app
-
-
 def create_app_or_celery(config='app.settings', mode='app'):
     assert isinstance(mode, str), 'bad mode type "{}"'.format(type(mode))
     assert mode in ('app', 'celery'), 'bad mode "{}"'.format(mode)

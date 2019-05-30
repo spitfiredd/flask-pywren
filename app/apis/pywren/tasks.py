@@ -18,9 +18,6 @@ def pywren_long_task(iterdata=[], config=None, runtime=None):
             total = total + map_result
         return total
 
-    # config=c_app.config.get('PYWREN_CONFIG'),
-    #                             runtime=c_app.config.get('PYWREN_RUNTIME')
-
     pw = pywren.ibm_cf_executor(config=config, runtime=runtime)
     pw.map_reduce(my_map_function, iterdata, my_reduce_function)
     result = pw.get_result()

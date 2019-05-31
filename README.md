@@ -71,3 +71,7 @@ Run demo app:
 
 To run the flask celery worker:
 `celery -A app.entry_celery worker -l info -P gevent`
+
+## TODO
+
+* Add docker-compose file

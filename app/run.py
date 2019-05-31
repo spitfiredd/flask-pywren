@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for
 
-from app.apis.pywren.tasks import celery
+from app.extensions import celery
 
 
 def create_app():

@@ -1,9 +1,7 @@
-from celery import Celery
-
 import pywren_ibm_cloud as pywren
 
+from app.extensions import celery
 
-celery = Celery(__name__, autofinalize=False)
 
 
 @celery.task

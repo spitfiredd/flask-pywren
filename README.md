@@ -64,6 +64,8 @@ Then in your celery config set you broker as `broker='amqp://localhost:5672'`
 
 ## Start Celery workers
 
+Check out this [SO](https://stackoverflow.com/a/47331438/1761521) to see to to run Celery 4.3 in Windows 10.
+
 Run demo app:
 `celery -A scripts.celery_demo worker -l info -P gevent`
 

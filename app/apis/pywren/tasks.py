@@ -3,7 +3,6 @@ import pywren_ibm_cloud as pywren
 from app.extensions import celery
 
 
-
 @celery.task
 def pywren_long_task(iterdata=[], config=None, runtime=None):
 

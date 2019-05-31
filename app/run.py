@@ -24,6 +24,7 @@ def create_app_or_celery(config='app.settings', mode='app'):
     # register blueprints
     load_blueprints(app)
 
+    # pin swaggar docs for /api/v1 to localhost:5000 for convience
     @app.route('/')
     def homepage():
         """Set /api/v1/ as home route"""

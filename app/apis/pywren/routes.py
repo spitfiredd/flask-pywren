@@ -46,7 +46,6 @@ class PywrenHelloCelery(Resource):
             runtime=c_app.config.get('PYWREN_RUNTIME')
         )
 
-
         task = pywren_long_task.apply_async(kwargs=task_kw)
 
         return jsonify({'task_id': task.id})

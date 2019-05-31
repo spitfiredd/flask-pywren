@@ -1,11 +1,22 @@
 #  Example Pywren Flask REST API
 Pywren Hello World REST API.
 
+There are three routes in this example,
+
+* POST /pywren-hello-world
+* POST /pywren-hello-world-celery
+* GET  /pywren-hello-world-celery/{task_id}
+
+Navigate to `localhost:5000` and you can test these routes with swaggar.  The `/pywren-hello-world-celery` will return a `task_id` which you can copy/paste (copy withough the quotes) in `/pywren-hello-world-celery/{task_id}` which will return the result.
+
+The basis for the example routes can be found [here](https://github.com/pywren/pywren-ibm-cloud/blob/master/examples/map_reduce.py).
+
+
 ## Getting Started
 Quickly set up an environment by running `pipenv install` and `pipenv install --dev`. The `--dev` flag will add linting, testing and an ipython terminal.
 
 ## Setting up Pywren
-Either in a `.env` file add the following,
+Either in a `.env` file or by setting environ variables add the following,
 
 ```
 FLASK_APP='app.run'
@@ -26,7 +37,7 @@ Once you've set you pywren config variables, you can activate your environment w
 You can then naviagte to the home route `http://localhost:5000` which will redirect you to `http://localhost:5000/api/v1/`
 
 ## Getting data with requests.
-Once the application is up and running you can sent a POST request with requests in a separate terminal.
+You can process the endpoints with CURL or with python using the requests library, here is a simple example with requests.
 
 ```
 import requests
@@ -35,7 +46,6 @@ data = r.json()
 print(data)
 >>> {'result': 38}
 ```
-
 
 ## Install Redis docker image
 These are the instructions for installing a Redis docker container and running it.  This is espically nice on windows because you don't have to worry about all the dependencies.

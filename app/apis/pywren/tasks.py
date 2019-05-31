@@ -1,3 +1,5 @@
+import random
+from time import sleep
 import pywren_ibm_cloud as pywren
 
 from app.extensions import celery
@@ -18,4 +20,9 @@ def pywren_long_task(iterdata=[], config=None, runtime=None):
     pw = pywren.ibm_cf_executor(config=config, runtime=runtime)
     pw.map_reduce(my_map_function, iterdata, my_reduce_function)
     result = pw.get_result()
+
+    # simulating a long task by sleeping n number of seconds before returning
+    # the result
+    n = random.randint(10, 40)
+    sleep(n)
     return {'result': result}

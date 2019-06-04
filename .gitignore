@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# docker env files
+docker.env
+
 # config files
 *.toml
 

@@ -2,7 +2,9 @@ import random
 from time import sleep
 import pywren_ibm_cloud as pywren
 
-from app.extensions import celery
+from server.extensions import celery
+
+# from .models import my_map_function, my_reduce_function
 
 
 @celery.task

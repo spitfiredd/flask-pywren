@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for
 
-from app.extensions import celery
+from server.extensions import celery
 
 
 def create_app():
@@ -11,7 +11,7 @@ def create_celery():
     return create_app_or_celery(mode='celery')
 
 
-def create_app_or_celery(config='app.settings', mode='app'):
+def create_app_or_celery(config='server.settings', mode='app'):
     assert isinstance(mode, str), 'bad mode type "{}"'.format(type(mode))
     assert mode in ('app', 'celery'), 'bad mode "{}"'.format(mode)
 
@@ -38,7 +38,7 @@ def create_app_or_celery(config='app.settings', mode='app'):
 
 def load_blueprints(app):
     """Register blueprints."""
-    from app.apis import api_v1_bp
+    from server.apis import api_v1_bp
     app.register_blueprint(api_v1_bp)
     return None
 

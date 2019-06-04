@@ -65,5 +65,10 @@ class PywrenHelloCeleryResults(Resource):
                 'state': task.state,
                 'result': task.get()
             }
+        elif task.state == 'FAILURE':
+            resp = {
+                'state': task.state,
+                'error': str(task.info)
+            }
 
         return jsonify(resp)

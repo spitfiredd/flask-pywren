@@ -1,0 +1,66 @@
+version: '3.4'
+
+services:
+
+  api:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    image: flask-pywren
+    container_name: flask_apis
+    command: /usr/local/bin/gunicorn -w 2 -b :8000 flask_entrypoint:app
+    env_file:
+     - ./docker.env
+    expose:
+      - "8000"
+    volumes:
+      - .:/app/
+    # ports:
+    #   - "8000:8000"
+
+
+
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app/
+    links:
+      - api:api
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: flask-pywren
+    container_name: flask_worker
+    depends_on:
+      - redis
+      - rabbitmq
+    command: celery -A celery_entrypoint worker -l info -P gevent
+    env_file:
+     - ./docker.env
+    volumes:
+      - .:/app/
+
+  redis:
+    image: redis
+    container_name: flask-redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  rabbitmq:
+    image: rabbitmq
+    container_name: flask-rabbit
+    ports:
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5

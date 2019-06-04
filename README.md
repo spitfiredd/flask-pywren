@@ -80,7 +80,7 @@ Run demo app:
 `celery -A scripts.celery_demo worker -l info -P gevent`
 
 To run the flask celery worker:
-`celery -A app.entry_celery worker -l info -P gevent`
+`celery -A celery_entrypoint worker -l info -P gevent`
 
 ## TODO
 

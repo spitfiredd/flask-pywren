@@ -3,6 +3,7 @@ from flask_restplus import Api
 from jsonschema import FormatChecker
 
 from .pywren.routes import api as pywren_ns
+from .hello.routes import api as add_ns
 
 format_checker = FormatChecker(formats=["date"])
 
@@ -16,3 +17,4 @@ api = Api(
 )
 
 api.add_namespace(pywren_ns)
+api.add_namespace(add_ns)

@@ -82,6 +82,32 @@ Run demo app:
 To run the flask celery worker:
 `celery -A celery_entrypoint worker -l info -P gevent`
 
-## TODO
+## Docker Compose
+There is a `docker-compose.yml` file where you can quickly start and stop all the running containers. First create a `docker.env` file with the same contents as the `.env` file. 
 
-* Add docker-compose file
+To build all the necessary containers run,
+
+```
+docker-compose build
+```
+
+To run it,
+
+```
+docker-compose run -d
+```
+
+Then once everything is build you can check the status of the containers by,
+
+```
+docker-compose ps
+```
+
+Then just navigate to `localhost` and from there you can test out the apis with swaggar.
+
+
+To stop all the running containers,
+
+```
+docker-compose down
+```
